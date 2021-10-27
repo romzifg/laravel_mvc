@@ -29,6 +29,11 @@ class DatabaseSeeder extends Seeder
             'slug' => 'personal'
         ]);
 
+        Category::create([
+            'name' => 'Web Design',
+            'slug' => 'web-design'
+        ]);
+
         // User::create([
         //     'name' => 'Romzi Farhan',
         //     'email' => 'romzifarhan@email',

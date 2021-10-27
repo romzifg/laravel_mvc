@@ -19,7 +19,8 @@ use App\Http\Controllers\PostController;
 
 Route::get('/', function () {
     return view('home', [
-        "title" => "Home"
+        "title" => "Home",
+        'active' => 'home'
     ]);
 });
 
@@ -29,17 +30,19 @@ Route::get('/about', function () {
         "email" => "romzifg@gmail.com",
         "profession" => "Full-Stack Developer",
         "image" => "Foto.jpeg",
-        "title" => "About"
+        "title" => "About",
+        "active" => 'about'
     ]);
 });
 
-Route::get('/blog', [PostController::class, 'index']);
+Route::get('/posts', [PostController::class, 'index']);
 
 // Halaman single post
 Route::get('/posts/{post:slug}', [PostController::class, 'show']);
 Route::get('/categories', function() {
     return view('categories', [
         'title' => "Post Category",
+        'active' => 'categories',
         'categories' => Category::all()
     ]);
 });
@@ -47,6 +50,7 @@ Route::get('/categories', function() {
 Route::get('/categories/{category:slug}', function(Category $category){
     return view('posts', [
         'title' => "Post by Category: $category->name",
+        'active' => 'categories',
         'posts' => $category->posts->load('category', 'author'),
     ]);
 });
